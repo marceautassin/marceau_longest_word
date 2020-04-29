@@ -6,6 +6,7 @@ class PartiesController < ApplicationController
     # @letters = vowells.sample(5) + consonants.to_a.sample(5)
     @letters = ['a', 'b', 'a', 'n', 'd', 'o', 'n']
     @party = Party.new
+
   end
 
   def create
@@ -17,14 +18,13 @@ class PartiesController < ApplicationController
         valid_word
         if @result
           @party.available = true
-          @party.save! #manque le game!
-          redirect_to root_path
-        else
-          render :new
+          @party.game = Game.create(user: current_user) # to be update
+          @party.save!
         end
       else
         false
       end
+      redirect_to root_path
     end
 
   end
