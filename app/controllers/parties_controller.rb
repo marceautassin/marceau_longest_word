@@ -3,14 +3,24 @@ class PartiesController < ApplicationController
     vowells = ['a', 'e', 'i','o','u']
     letters = ('a'..'z').to_a
     consonants = letters - vowells
-    @letters = vowells.sample(5) + consonants.to_a.sample(5)
+    # @letters = vowells.sample(5) + consonants.to_a.sample(5)
+    @letters = ['a', 'b', 'a', 'n', 'd', 'o', 'n']
     @party = Party.new
   end
 
   def create
     @party = Party.new(params_party)
-    if from_the_array
+    grid = params[:grid].split('')
+    # console
+    @party.word.split('').each do |letter|
+      if grid.include?(letter)
+        valid_word
+        if @result
 
+        end
+      else
+        false
+      end
     end
 
   end
@@ -20,19 +30,8 @@ class PartiesController < ApplicationController
     params.require(:party).permit(:word)
   end
 
-  def from_the_array
-    params[:party][:word].split('').each do |letter|
-      if @letters.include?(letter)
-        @letters.delete_at(@letters.index(letter))
-      else
-        false
-      end
-      return true
-    end
-  end
-
   def valid_word
-
+    @result = Word.exists?(word: @party.word)
   end
 
 end
