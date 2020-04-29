@@ -16,7 +16,11 @@ class PartiesController < ApplicationController
       if grid.include?(letter)
         valid_word
         if @result
-
+          @party.available = true
+          @party.save! #manque le game!
+          redirect_to root_path
+        else
+          render :new
         end
       else
         false
