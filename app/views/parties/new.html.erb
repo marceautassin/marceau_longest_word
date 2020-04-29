@@ -1,0 +1,44 @@
+<header>
+<div class="container">
+</div>
+</header>
+
+
+<section>
+    <div class="container">
+          <div class="row">
+        <% @letters.each do |letter| %>
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-text"><%= letter %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+          </div>
+      </div>
+
+<div class="container">
+<%= form_for @party do |f| %>
+  <%= f.text_field :word %><br />
+  <%= hidden_field_tag :grid, @letters.join %>
+  <%= f.submit %>
+<% end %>
+
+
+<footer>
+<div class="footer">
+  <div class="footer-links">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+  </div>
+  <div class="footer-copyright">
+    Pick me!!!! <i class="fas fa-heart"></i>
+  </div>
+</div>
+
+</footer>
